@@ -6,18 +6,9 @@ public class Servico {
     private double preco;
 
     public Servico(String nome, double preco, int duracao) {
-        if (nome == null || nome.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome inválido.");
-        }
-        if (preco <= 0 ) {
-            throw new IllegalArgumentException("Preço inválido.");
-        }
-        if (duracao <= 0) {
-            throw new IllegalArgumentException("Duração inválida.");
-        }
-        this.nome = nome;
-        this.preco = preco;
-        this.duracao = duracao;
+        setNome(nome);
+        setPreco(preco);
+        setDuracao(duracao);
     }
 
     public String getNome() {
@@ -25,6 +16,9 @@ public class Servico {
     }
 
     public void setNome(String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome inválido");
+        }
         this.nome = nome;
     }
 
@@ -33,6 +27,9 @@ public class Servico {
     }
 
     public void setDuracao(int duracao) {
+        if (duracao <= 0) {
+            throw new IllegalArgumentException("Duração inválida");
+        }
         this.duracao = duracao;
     }
 
@@ -41,6 +38,16 @@ public class Servico {
     }
 
     public void setPreco(double preco) {
+        if (preco <= 0) {
+            throw new IllegalArgumentException("Preço inválido");
+        }
         this.preco = preco;
+    }
+
+    @Override
+    public String toString() {
+        return "Serviço: " + nome +
+                "\nPreço: " + String.format("%.2f", preco) +
+                "\nDuração" + duracao;
     }
 }
