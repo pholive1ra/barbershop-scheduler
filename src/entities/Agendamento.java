@@ -1,5 +1,5 @@
 package entities;
-import entities.enums.StatusAgendamento;
+import enums.StatusAgendamento;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -10,17 +10,17 @@ public class Agendamento {
     private LocalDateTime horario;
     private Barbeiro barbeiro;
     private Servico servico;
-    private String cliente;
+    private Cliente cliente;
     private StatusAgendamento status;
 
-    public Agendamento(LocalDateTime horario, String cliente, Servico servico, Barbeiro barbeiro) {
+    public Agendamento(LocalDateTime horario, Cliente cliente, Servico servico, Barbeiro barbeiro) {
         if (horario == null || horario.isBefore(LocalDateTime.now())) {
             throw new IllegalArgumentException("Horário inválido.");
         }
         this.horario = horario;
         this.servico = Objects.requireNonNull(servico, "Serviço inválido.");
         this.barbeiro = Objects.requireNonNull(barbeiro, "Barbeiro inválido.");
-        setCliente(cliente);
+        this.cliente = Objects.requireNonNull(cliente, "Cliente inválido");
         this.status = StatusAgendamento.AGENDADO;
     }
 
@@ -36,15 +36,12 @@ public class Agendamento {
         this.status = Objects.requireNonNull(status, "Status inválido.");
     }
 
-    public String getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(String cliente) {
-        if (cliente == null || cliente.trim().isEmpty()) {
-            throw new IllegalArgumentException("Cliente inválido.");
-        }
-        this.cliente = cliente.trim();
+    public void setCliente(Cliente cliente) {
+       this.cliente = Objects.requireNonNull(cliente, "Cliente inválido");
     }
 
     public Servico getServico() {
@@ -61,7 +58,7 @@ public class Agendamento {
 
     @Override
     public String toString() {
-        return "Cliente: " + cliente +
+        return "Cliente: " + cliente.getNome() +
                 "\nBarbeiro: " + barbeiro.getNome() +
                 "\nServiço: " + servico.getNome() +
                 "\nHorário: " + horario.format(FORMATTER) +
