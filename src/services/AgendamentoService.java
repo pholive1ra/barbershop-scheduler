@@ -1,7 +1,7 @@
 package services;
 
 import entities.Agendamento;
-import enums.StatusAgendamento;
+import entities.enums.StatusAgendamento;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class AgendamentoService {
                     a.getHorario().equals(agendamento.getHorario())
                     &&
                     a.getBarbeiro().equals(agendamento.getBarbeiro())) {
-                throw new IllegalArgumentException("Horário indisponível");
+                throw new IllegalArgumentException("Horário indisponível.");
             }
         }
         agendamentos.add(agendamento);
@@ -35,7 +35,7 @@ public class AgendamentoService {
                 return;
             }
         }
-        throw new IllegalArgumentException("Agendamento não encontrado");
+        throw new IllegalArgumentException("Agendamento não encontrado.");
     }
 }
 

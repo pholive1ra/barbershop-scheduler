@@ -5,40 +5,42 @@ import entities.Servico;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServicoService {
+public class ServicoService implements CrudService<Servico> {
     private List<Servico> servicos = new ArrayList<>();
 
-    public void cadastrarServico(Servico servico) {
+    @Override
+    public void cadastrar(Servico servico) {
         for (Servico s : servicos) {
             if (s.getNome().equals(servico.getNome())) {
-                throw new IllegalArgumentException("Serviço já cadastrado");
+                throw new IllegalArgumentException("Serviço já cadastrado.");
             }
         }
         servicos.add(servico);
     }
 
-    public void listarServicos() {
-        for (Servico s : servicos) {
-            System.out.println(s);
-        }
+    @Override
+    public List<Servico> listar() {
+        return servicos;
     }
 
-    public void removerServico(Servico servico) {
+    @Override
+    public void remover(Servico servico) {
         for (Servico s : servicos) {
             if (s.getNome().equals(servico.getNome())) {
                 servicos.remove(s);
                 return;
             }
         }
-        throw new IllegalArgumentException("Serviço não encontrado");
+        throw new IllegalArgumentException("Serviço não encontrado.");
     }
 
-    public Servico buscarServico(String nome) {
+    @Override
+    public Servico buscar(String nome) {
         for (Servico s : servicos) {
             if (s.getNome().equals(nome)) {
                 return s;
             }
         }
-        throw new IllegalArgumentException("Serviço não encontrado");
+        throw new IllegalArgumentException("Serviço não encontrado.");
     }
 }

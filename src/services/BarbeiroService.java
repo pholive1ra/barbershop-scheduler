@@ -4,37 +4,42 @@ import entities.Barbeiro;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BarbeiroService {
+public class BarbeiroService implements CrudService<Barbeiro> {
     private List<Barbeiro> barbeiros = new ArrayList<>();
 
-    public void cadastrarBarbeiro(Barbeiro barbeiro) {
+    @Override
+    public void cadastrar(Barbeiro barbeiro) {
         for (Barbeiro b : barbeiros) {
             if (b.getNome().equals(barbeiro.getNome())) {
-                throw new IllegalArgumentException("Nome já existente");
+                throw new IllegalArgumentException("Nome já existente.");
             }
         }
         barbeiros.add(barbeiro);
     }
-    public void listarBarbeiros() {
-        for(Barbeiro b : barbeiros) {
-            System.out.println(b);
-        }
+
+    @Override
+    public List<Barbeiro> listar() {
+        return barbeiros;
     }
-    public void removerBarbeiro(Barbeiro barbeiro) {
+
+    @Override
+    public void remover(Barbeiro barbeiro) {
         for (Barbeiro b : barbeiros) {
             if (b.getNome().equals(barbeiro.getNome())) {
                 barbeiros.remove(b);
                 return;
             }
         }
-        throw new IllegalArgumentException("Barbeiro não encontrado");
+        throw new IllegalArgumentException("Barbeiro não encontrado.");
     }
-    public Barbeiro buscarBarbeiro(String nome) {
+
+    @Override
+    public Barbeiro buscar(String nome) {
         for (Barbeiro b : barbeiros) {
             if (b.getNome().equals(nome)) {
                 return b;
             }
         }
-        throw new IllegalArgumentException("Barbeiro não encontrado");
+        throw new IllegalArgumentException("Barbeiro não encontrado.");
     }
 }

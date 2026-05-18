@@ -1,5 +1,5 @@
 package entities;
-import enums.StatusAgendamento;
+import entities.enums.StatusAgendamento;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,7 +20,7 @@ public class Agendamento {
         this.horario = horario;
         this.servico = Objects.requireNonNull(servico, "Serviço inválido.");
         this.barbeiro = Objects.requireNonNull(barbeiro, "Barbeiro inválido.");
-        this.cliente = Objects.requireNonNull(cliente, "Cliente inválido");
+        this.cliente = Objects.requireNonNull(cliente, "Cliente inválido.");
         this.status = StatusAgendamento.AGENDADO;
     }
 

@@ -17,7 +17,7 @@ public class Cliente {
 
     public void setNome(String nome) {
         if (nome == null || nome.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome inválido");
+            throw new IllegalArgumentException("Nome inválido.");
         }
         this.nome = nome;
     }
@@ -40,7 +40,7 @@ public class Cliente {
 
     public void setEmail(String email) {
         if (email == null || !email.contains("@")) {
-            throw new IllegalArgumentException("E-mail inválido");
+            throw new IllegalArgumentException("E-mail inválido.");
         }
         this.email = email;
     }

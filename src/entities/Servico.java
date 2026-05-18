@@ -17,7 +17,7 @@ public class Servico {
 
     public void setNome(String nome) {
         if (nome == null || nome.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome inválido");
+            throw new IllegalArgumentException("Nome inválido.");
         }
         this.nome = nome;
     }
@@ -28,7 +28,7 @@ public class Servico {
 
     public void setDuracao(int duracao) {
         if (duracao <= 0) {
-            throw new IllegalArgumentException("Duração inválida");
+            throw new IllegalArgumentException("Duração inválida.");
         }
         this.duracao = duracao;
     }
@@ -39,7 +39,7 @@ public class Servico {
 
     public void setPreco(double preco) {
         if (preco <= 0) {
-            throw new IllegalArgumentException("Preço inválido");
+            throw new IllegalArgumentException("Preço inválido.");
         }
         this.preco = preco;
     }

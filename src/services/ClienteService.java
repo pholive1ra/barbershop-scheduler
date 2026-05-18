@@ -5,40 +5,42 @@ import entities.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteService {
+public class ClienteService implements CrudService<Cliente>{
     private List<Cliente> clientes = new ArrayList<>();
 
-    public void cadastrarCliente(Cliente cliente) {
+    @Override
+    public void cadastrar(Cliente cliente) {
         for (Cliente c : clientes) {
             if (c.getNome().equals(cliente.getNome()) || c.getTelefone().equals(cliente.getTelefone())) {
-                throw new IllegalArgumentException("Cliente já cadastrado");
+                throw new IllegalArgumentException("Cliente já cadastrado.");
             }
         }
         clientes.add(cliente);
     }
 
-    public void listarClientes() {
-        for (Cliente c : clientes) {
-            System.out.println(c);
-        }
+    @Override
+    public List<Cliente> listar() {
+        return clientes;
     }
 
-    public void removerCliente(Cliente cliente) {
+    @Override
+    public void remover(Cliente cliente) {
         for (Cliente c : clientes) {
             if (c.getNome().equals(cliente.getNome())) {
                 clientes.remove(c);
                 return;
             }
         }
-        throw new IllegalArgumentException("Cliente não encontrado");
+        throw new IllegalArgumentException("Cliente não encontrado.");
     }
 
-    public Cliente buscarCliente(String nome) {
+    @Override
+    public Cliente buscar(String nome) {
         for (Cliente c : clientes) {
             if (c.getNome().equals(nome)) {
                 return c;
             }
         }
-        throw new IllegalArgumentException("Cliente não encontrado");
+        throw new IllegalArgumentException("Cliente não encontrado.");
     }
 }
